@@ -1,0 +1,23 @@
+---
+- hosts: pi
+  become: yes
+
+  pre_tasks:
+    - name: Update apt cache
+      ansible.builtin.apt: update_cache=yes upgrade=safe
+
+  tasks:
+    - name: Set proper timezone
+      import_tasks: tasks/set-timezone.yml
+
+    - name: Disable swap file
+      import_tasks: tasks/disable-swap.yml
+
+    - name: Remove some (useful) utilities to reduce writes to SD card
+      import_tasks: tasks/remove-tools.yml
+
+    - name: Install Docker
+      import_tasks: tasks/install-docker.yml
+
+    - name: Clean unused dependencies
+      ansible.builtin.apt: autoremove=yes

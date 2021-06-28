@@ -1,0 +1,7 @@
+pi:
+  vars:
+    ansible_user: pi
+    ansible_password: raspberry
+  hosts:
+    paspberrypi.local:
+      

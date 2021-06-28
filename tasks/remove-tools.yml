@@ -1,0 +1,11 @@
+---
+- name: Uninstall cron samba triggerhappy rsyslog logrotate
+  ansible.builtin.apt:
+    name: 
+      - cron
+      - samba-common
+      - triggerhappy
+      - logrotate
+      - rsyslog
+    state: absent
+    purge: yes
