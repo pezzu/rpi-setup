@@ -8,7 +8,7 @@
 
   tasks:
     - name: Set proper timezone
-      import_tasks: tasks/set-timezone-est.yml
+      import_tasks: tasks/set-timezone.yml
 
     - name: Disable swap file
       import_tasks: tasks/disable-swap.yml
@@ -21,3 +21,6 @@
 
     - name: Clean unused dependencies
       ansible.builtin.apt: autoremove=yes
+
+  vars:
+    timezone: America/New_York
