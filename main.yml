@@ -8,7 +8,7 @@
 
   tasks:
     - name: Set proper timezone
-      import_tasks: tasks/set-timezone.yml
+      import_tasks: tasks/set-timezone-est.yml
 
     - name: Disable swap file
       import_tasks: tasks/disable-swap.yml

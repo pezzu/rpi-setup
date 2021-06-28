@@ -1,4 +1,5 @@
 ---
 - name: Set timezone to America/New_York
+  become: yes
   community.general.timezone:
     name: America/New_York

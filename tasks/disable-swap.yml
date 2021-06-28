@@ -1,5 +1,6 @@
 ---
 - name: Disable swap file (dphys-swapfile)
+  become: yes
   when: "ansible_lsb.id == 'Debian'"
   ansible.builtin.systemd:
     name: dphys-swapfile
