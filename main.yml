@@ -13,9 +13,6 @@
     - name: Disable swap file
       import_tasks: tasks/configure-swap.yml
 
-    - name: Remove some (useful) utilities to reduce writes to SD card
-      import_tasks: tasks/remove-tools.yml
-
     - name: Install Docker
       import_tasks: tasks/install-docker.yml
 
