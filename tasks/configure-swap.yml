@@ -1,0 +1,8 @@
+---
+- name: "{{ swap_enabled | ternary('Enable', 'Disable') }} swap file"
+  become: yes 
+  when: ansible_lsb.id == 'Debian' and swap_enabled is defined
+  ansible.builtin.systemd:
+    name: dphys-swapfile
+    state: "{{ swap_enabled | ternary('started', 'stopped') }}"
+    enabled: "{{ swap_enabled }}"

@@ -11,7 +11,7 @@
       import_tasks: tasks/set-timezone.yml
 
     - name: Disable swap file
-      import_tasks: tasks/disable-swap.yml
+      import_tasks: tasks/configure-swap.yml
 
     - name: Remove some (useful) utilities to reduce writes to SD card
       import_tasks: tasks/remove-tools.yml
@@ -23,4 +23,5 @@
       ansible.builtin.apt: autoremove=yes
 
   vars:
+    swap_enabled: no
     timezone: America/New_York
