@@ -1,0 +1,8 @@
+---
+- name: Ensure Bluetooth is {{ bt_enabled | ternary('enabled', 'disabled') }}
+  when: bt_enabled is defined
+  become: yes
+  ansible.builtin.lineinfile:
+    line: dtoverlay=disable-bt
+    dest: /boot/config.txt
+    state: "{{ bt_enabled | ternary('absent', 'present') }}"

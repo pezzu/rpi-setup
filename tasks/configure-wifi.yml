@@ -1,0 +1,8 @@
+---
+- name: Ensure WiFi is {{ wifi_enabled | ternary('enabled', 'disabled') }}
+  when: wifi_enabled is defined
+  become: yes
+  ansible.builtin.lineinfile:
+    line: dtoverlay=disable-wifi
+    dest: /boot/config.txt
+    state: "{{ wifi_enabled | ternary('absent', 'present') }}"

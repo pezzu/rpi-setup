@@ -13,6 +13,12 @@
     - name: Disable swap file
       import_tasks: tasks/configure-swap.yml
 
+    - name: Configure Bluetooth
+      import_tasks: tasks/configure-bt.yml
+
+    - name: Configure WiFi
+      import_tasks: tasks/configure-wifi.yml
+
     - name: Install Docker
       import_tasks: tasks/install-docker.yml
 
@@ -21,4 +27,6 @@
 
   vars:
     swap_enabled: no
+    bt_enabled: no
+    wifi_enabled: no
     timezone: America/New_York
