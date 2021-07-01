@@ -10,15 +10,14 @@
 - [ ] Configure hostname
 - [ ] Configure user / password
 - [ ] Setup SSH key
-- [ ] System upgrade
-- [x] EEPROM update
+- [x] Distribution upgrade
+- [x] EEPROM firmware update
 - [ ] Setup unattended upgrades
 - [x] Setup timezone
 - [ ] Setup locale
 - [ ] Setup tmpfs mounts for write intensive folders
 - [x] Enable/Disable Bluetooth
 - [x] Enable/Disable WiFi
-- [ ] Enable/Disable HDMI
 - [x] Overclock
 - [ ] Modify custom boot config parameters
 - [x] Install Docker

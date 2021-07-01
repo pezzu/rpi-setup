@@ -11,6 +11,9 @@
       ansible.builtin.import_tasks: handlers/main.yml
 
   tasks:
+    - name: Upgrade distribution
+      import_tasks: tasks/upgrade-system.yml
+
     - name: Update EEPROM firmware
       import_tasks: tasks/update-eeprom.yml
 
@@ -39,6 +42,7 @@
   vars:
     boot_config_file: /boot/config.txt
 
+    dist_upgrade: yes
     eeprom_update: yes
 
     timezone: America/New_York
