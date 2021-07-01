@@ -11,6 +11,9 @@
       ansible.builtin.import_tasks: handlers/main.yml
 
   tasks:
+    - name: Update EEPROM firmware
+      import_tasks: tasks/update-eeprom.yml
+
     - name: Set proper timezone
       import_tasks: tasks/set-timezone.yml
 
@@ -26,9 +29,6 @@
     - name: Set CPU frequency
       import_tasks: tasks/set-cpu-frequency.yml
 
-    - name: Set GPU frequency
-      import_tasks: tasks/set-cpu-frequency.yml
-
     - name: Install Docker
       import_tasks: tasks/install-docker.yml
 
@@ -38,6 +38,8 @@
 
   vars:
     boot_config_file: /boot/config.txt
+
+    eeprom_update: yes
 
     timezone: America/New_York
 

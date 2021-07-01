@@ -11,7 +11,7 @@
 - [ ] Configure user / password
 - [ ] Setup SSH key
 - [ ] System upgrade
-- [ ] EEPROM upgrade
+- [x] EEPROM update
 - [ ] Setup unattended upgrades
 - [x] Setup timezone
 - [ ] Setup locale
