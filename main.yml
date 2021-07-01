@@ -4,7 +4,7 @@
 
   pre_tasks:
     - name: Update apt cache
-      ansible.builtin.apt: update_cache=yes upgrade=safe
+      ansible.builtin.apt: update_cache=yes cache_valid_time=3600
 
   tasks:
     - name: Set proper timezone
@@ -26,7 +26,10 @@
       ansible.builtin.apt: autoremove=yes
 
   vars:
+    timezone: America/New_York
+
     swap_enabled: no
     bt_enabled: no
     wifi_enabled: no
-    timezone: America/New_York
+
+    docker_install: yes
