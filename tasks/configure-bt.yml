@@ -4,5 +4,5 @@
   become: yes
   ansible.builtin.lineinfile:
     line: dtoverlay=disable-bt
-    dest: /boot/config.txt
+    dest: "{{ boot_config_file }}"
     state: "{{ bt_enabled | ternary('absent', 'present') }}"

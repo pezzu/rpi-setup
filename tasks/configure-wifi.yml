@@ -4,5 +4,5 @@
   become: yes
   ansible.builtin.lineinfile:
     line: dtoverlay=disable-wifi
-    dest: /boot/config.txt
+    dest: "{{ boot_config_file }}"
     state: "{{ wifi_enabled | ternary('absent', 'present') }}"

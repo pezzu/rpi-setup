@@ -6,6 +6,10 @@
     - name: Update apt cache
       ansible.builtin.apt: update_cache=yes cache_valid_time=3600
 
+  handlers:
+    - name: Include handlers
+      ansible.builtin.import_tasks: handlers/main.yml
+
   tasks:
     - name: Set proper timezone
       import_tasks: tasks/set-timezone.yml
@@ -19,17 +23,28 @@
     - name: Configure WiFi
       import_tasks: tasks/configure-wifi.yml
 
+    - name: Set CPU frequency
+      import_tasks: tasks/set-cpu-frequency.yml
+
+    - name: Set GPU frequency
+      import_tasks: tasks/set-cpu-frequency.yml
+
     - name: Install Docker
       import_tasks: tasks/install-docker.yml
 
+  post_tasks:
     - name: Clean unused dependencies
       ansible.builtin.apt: autoremove=yes
 
   vars:
+    boot_config_file: /boot/config.txt
+
     timezone: America/New_York
 
     swap_enabled: no
     bt_enabled: no
     wifi_enabled: no
+
+    cpu_overclock: yes
 
     docker_install: yes

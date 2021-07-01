@@ -10,6 +10,8 @@
 - [ ] Configure hostname
 - [ ] Configure user / password
 - [ ] Setup SSH key
+- [ ] System upgrade
+- [ ] EEPROM upgrade
 - [ ] Setup unattended upgrades
 - [x] Setup timezone
 - [ ] Setup locale
@@ -17,7 +19,7 @@
 - [x] Enable/Disable Bluetooth
 - [x] Enable/Disable WiFi
 - [ ] Enable/Disable HDMI
-- [ ] Overclock
+- [x] Overclock
 - [ ] Modify custom boot config parameters
 - [x] Install Docker
 - [ ] Install rpi-monitor
