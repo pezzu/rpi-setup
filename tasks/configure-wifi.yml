@@ -6,3 +6,4 @@
     line: dtoverlay=disable-wifi
     dest: "{{ boot_config_file }}"
     state: "{{ wifi_enabled | ternary('absent', 'present') }}"
+  notify: Reboot Host

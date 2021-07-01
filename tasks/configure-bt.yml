@@ -6,3 +6,4 @@
     line: dtoverlay=disable-bt
     dest: "{{ boot_config_file }}"
     state: "{{ bt_enabled | ternary('absent', 'present') }}"
+  notify: Reboot Host
