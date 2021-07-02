@@ -3,7 +3,8 @@
   when: bt_enabled is defined
   become: yes
   ansible.builtin.lineinfile:
-    line: dtoverlay=disable-bt
     dest: "{{ boot_config_file }}"
+    regexp: "^dtoverlay=disable-bt"
+    line: "dtoverlay=disable-bt"
     state: "{{ bt_enabled | ternary('absent', 'present') }}"
   notify: Reboot Host

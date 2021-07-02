@@ -3,7 +3,8 @@
   when: wifi_enabled is defined
   become: yes
   ansible.builtin.lineinfile:
-    line: dtoverlay=disable-wifi
     dest: "{{ boot_config_file }}"
+    regexp: "^dtoverlay=disable-wifi" 
+    line: "dtoverlay=disable-wifi"
     state: "{{ wifi_enabled | ternary('absent', 'present') }}"
   notify: Reboot Host

@@ -6,13 +6,17 @@
     - name: Ensure proper voltage
       ansible.builtin.lineinfile:
         path: "{{ boot_config_file }}"
-        line: over_voltage=2
-        state: "{{ cpu_overclock | ternary('present', 'absent') }}"
+        regexp: "^over_voltage="
+        line: "over_voltage=2"
+        insertbefore: "arm_freq="
+        state: "{{ cpu_overclock | ternary('present', 'absent') }}"        
       notify: Reboot Host
 
     - name: Ensure CPU frequency
       ansible.builtin.lineinfile:
         path: "{{ boot_config_file }}"
-        line: arm_freq=1750
+        regexp: "^arm_freq="
+        line: "arm_freq=1750"
+        insertafter: "^over_voltage="
         state: "{{ cpu_overclock | ternary('present', 'absent') }}"
       notify: Reboot Host
