@@ -1,7 +1,7 @@
 ---
 - name: Set CPU frequency
   when: cpu_overclock is defined
-  become: yes
+  become: true
   block:
     - name: Ensure proper voltage
       ansible.builtin.lineinfile:
@@ -9,7 +9,7 @@
         regexp: "^over_voltage="
         line: "over_voltage=2"
         insertbefore: "arm_freq="
-        state: "{{ cpu_overclock | ternary('present', 'absent') }}"        
+        state: "{{ cpu_overclock | ternary('present', 'absent') }}"
       notify: Reboot Host
 
     - name: Ensure CPU frequency

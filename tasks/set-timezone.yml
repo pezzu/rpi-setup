@@ -1,6 +1,6 @@
 ---
 - name: Set timezone to {{ timezone }}
-  become: yes
+  become: true
   community.general.timezone:
     name: "{{ timezone }}"
   when: timezone is defined

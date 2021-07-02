@@ -1,6 +1,6 @@
 ---
 - hosts: pi
-  become: yes
+  become: true
 
   pre_tasks:
     - name: Update apt cache
@@ -42,15 +42,15 @@
   vars:
     boot_config_file: /boot/config.txt
 
-    dist_upgrade: yes
-    eeprom_update: yes
+    dist_upgrade: true
+    eeprom_update: true
 
     timezone: America/New_York
 
-    swap_enabled: no
-    bt_enabled: no
-    wifi_enabled: no
+    swap_enabled: false
+    bt_enabled: false
+    wifi_enabled: false
 
-    cpu_overclock: yes
+    cpu_overclock: true
 
-    docker_install: yes
+    docker_install: true

@@ -1,7 +1,7 @@
 ---
 - name: Ensure Bluetooth is {{ bt_enabled | ternary('enabled', 'disabled') }}
   when: bt_enabled is defined
-  become: yes
+  become: true
   ansible.builtin.lineinfile:
     dest: "{{ boot_config_file }}"
     regexp: "^dtoverlay=disable-bt"

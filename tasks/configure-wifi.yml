@@ -1,10 +1,10 @@
 ---
 - name: Ensure WiFi is {{ wifi_enabled | ternary('enabled', 'disabled') }}
   when: wifi_enabled is defined
-  become: yes
+  become: true
   ansible.builtin.lineinfile:
     dest: "{{ boot_config_file }}"
-    regexp: "^dtoverlay=disable-wifi" 
+    regexp: "^dtoverlay=disable-wifi"
     line: "dtoverlay=disable-wifi"
     state: "{{ wifi_enabled | ternary('absent', 'present') }}"
   notify: Reboot Host

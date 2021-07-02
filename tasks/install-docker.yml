@@ -1,7 +1,7 @@
 ---
 - name: Install Docker
   when: docker_install is defined and docker_install|bool
-  become: yes
+  become: true
   block:
 
   - name: Check if Docker is already present.
