@@ -23,3 +23,5 @@
 - [x] Install Docker
 - [ ] Install rpi-monitor
 - [ ] Install zram
+
+[![CI status](https://github.com/pezzu/rpi-setup/actions/workflows/ci.yml/badge.svg)](https://github.com/pezzu/rpi-setup/actions/workflows/ci.yml)
