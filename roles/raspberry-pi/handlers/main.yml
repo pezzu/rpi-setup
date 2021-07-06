@@ -1,4 +1,4 @@
 ---
-- name: Reboot Host
+- name: reboot host
   reboot:
     msg: "Reboot initiated by Ansible"

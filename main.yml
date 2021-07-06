@@ -6,31 +6,18 @@
     - name: Update apt cache
       ansible.builtin.apt: update_cache=yes cache_valid_time=3600
 
-  handlers:
-    - name: Include handlers
-      ansible.builtin.import_tasks: handlers/main.yml
+  roles:
+    - raspberry-pi
 
   tasks:
     - name: Upgrade distribution
       import_tasks: tasks/upgrade-system.yml
-
-    - name: Update EEPROM firmware
-      import_tasks: tasks/update-eeprom.yml
 
     - name: Set proper timezone
       import_tasks: tasks/set-timezone.yml
 
     - name: Disable swap file
       import_tasks: tasks/configure-swap.yml
-
-    - name: Configure Bluetooth
-      import_tasks: tasks/configure-bt.yml
-
-    - name: Configure WiFi
-      import_tasks: tasks/configure-wifi.yml
-
-    - name: Set CPU frequency
-      import_tasks: tasks/set-cpu-frequency.yml
 
     - name: Install Docker
       import_tasks: tasks/install-docker.yml
@@ -40,8 +27,6 @@
       ansible.builtin.apt: autoremove=yes
 
   vars:
-    boot_config_file: /boot/config.txt
-
     dist_upgrade: true
     eeprom_update: true
 

@@ -1,0 +1,12 @@
+---
+- name: Update EEPROM firmware.
+  import_tasks: tasks/update-eeprom.yml
+
+- name: Configure Bluetooth.
+  import_tasks: tasks/configure-bt.yml
+
+- name: Configure WiFi.
+  import_tasks: tasks/configure-wifi.yml
+
+- name: Set CPU frequency.
+  import_tasks: tasks/set-cpu-frequency.yml
