@@ -20,4 +20,4 @@
     - name: Schedule EEPROM update
       when: rpi_eeprom_update_result.rc == 1
       command: rpi-eeprom-update -a
-      notify: Reboot Host
+      notify: reboot host

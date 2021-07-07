@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  role_name: raspberry
+  description: Setup Raspberry Pi configuration for Debian
+  author: Peter Sukhenko
+
+  license: MIT
+
+  min_ansible_version: 2.8.0
+
+  platforms:
+    - name: Debian
+      versions:
+        - buster
+
+  galaxy_tags:
+    - raspberrypi
+    - raspberry
+    - raspbian
+    - rpi
+    - pi
+
+dependencies: []
