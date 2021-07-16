@@ -1,0 +1,10 @@
+---
+- name: Ensure mount points are configured.
+  ansible.posix.mount:
+    path: "{{ item.path }}"
+    src: tmpfs
+    fstype: tmpfs
+    opts: "defaults,size={{ item.size }},{{ item.options }}"
+    state: mounted
+  with_items: "{{ mount_tmpfs }}"
+  when: mount_tmpfs is defined and mount_tmpfs|length > 0

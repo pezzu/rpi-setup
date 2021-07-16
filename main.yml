@@ -30,6 +30,10 @@
     dist_upgrade: true
     eeprom_update: true
 
+    mount_tmpfs:
+      - { path: "/tmp", size: "512m", options: "nodev,nosuid" }
+      - { path: "/var/log", size: "512m", options: "nodev,noexec,nosuid" }
+
     timezone: America/New_York
 
     swap_enabled: false

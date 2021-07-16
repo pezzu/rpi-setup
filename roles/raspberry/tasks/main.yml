@@ -10,3 +10,6 @@
 
 - name: Set CPU frequency.
   import_tasks: tasks/set-cpu-frequency.yml
+
+- name: Mount tmpfs points.
+  import_tasks: tasks/mount-tmpfs.yml

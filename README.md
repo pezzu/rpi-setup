@@ -15,7 +15,7 @@
 - [ ] Setup unattended upgrades
 - [x] Setup timezone
 - [ ] Setup locale
-- [ ] Setup tmpfs mounts for write intensive folders
+- [x] Setup tmpfs mounts
 - [x] Enable/Disable Bluetooth
 - [x] Enable/Disable WiFi
 - [x] Overclock
