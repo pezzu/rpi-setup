@@ -13,3 +13,6 @@
 
 - name: Mount tmpfs points.
   import_tasks: tasks/mount-tmpfs.yml
+
+- name: Configure Swap file.
+  import_tasks: tasks/configure-swap.yml

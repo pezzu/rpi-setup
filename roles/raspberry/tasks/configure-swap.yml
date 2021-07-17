@@ -1,0 +1,38 @@
+---
+- name: Configure swap file state.
+  become: true
+  block:
+    - name: Ensure SWAP service is started/stopped.
+      when: swap.enabled is defined
+      ansible.builtin.systemd:
+        name: dphys-swapfile
+        state: "{{ swap.enabled | ternary('started', 'stopped') }}"
+        enabled: "{{ swap.enabled }}"
+
+    - name: Setup swap file size.
+      when: swap.size is defined
+      block:
+        - name: Check current swap size.
+          command: "grep ^CONF_SWAPSIZE={{ swap.size }}$ {{ dphys_swapfile }}"
+          changed_when: false
+          failed_when: false
+          register: get_swap_size_command_result
+
+        - name: Set proper Swap file size.
+          when: get_swap_size_command_result.rc == 1
+          block:
+            - name: Temporary turn swap off.
+              command: "dphys-swapfile swapoff"
+
+            - name: Set SWAPSIZE parameter.
+              ansible.builtin.lineinfile:
+                path: "{{ dphys_swapfile }}"
+                regexp: "^#?CONF_SWAPSIZE="
+                line: "CONF_SWAPSIZE={{ swap.size }}"
+                state: present
+
+            - name: Apply new swap size.
+              command: "dphys-swapfile setup"
+
+            - name: Turn swap back on.
+              command: "dphys-swapfile swapon"
