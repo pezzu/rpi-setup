@@ -24,7 +24,6 @@
       ansible.builtin.apt: autoremove=yes
 
   vars:
-    dist_upgrade: true
     eeprom_update: true
 
     mount_tmpfs:
@@ -48,5 +47,3 @@
     #   psk: my_secret_password
 
     cpu_overclock: true
-
-    docker_install: true

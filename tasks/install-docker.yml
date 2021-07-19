@@ -1,6 +1,5 @@
 ---
-- name: Install Docker
-  when: docker_install is defined and docker_install|bool
+- name: Install Docker.
   become: true
   block:
 

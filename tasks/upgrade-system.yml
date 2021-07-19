@@ -1,6 +1,5 @@
 ---
 - name: Upgrade Distribution
-  when: dist_upgrade is defined and dist_upgrade
   become: true
   ansible.builtin.apt:
     upgrade: full
