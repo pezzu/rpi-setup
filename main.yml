@@ -7,7 +7,7 @@
       ansible.builtin.apt: update_cache=yes cache_valid_time=3600
 
   roles:
-    - raspberry
+    - raspi_config
 
   tasks:
     - name: Upgrade distribution
@@ -36,7 +36,9 @@
 
     timezone: America/New_York
 
-    swap_enabled: false
+    swap:
+      enabled: false
+
     bt_enabled: false
     wifi_enabled: false
 

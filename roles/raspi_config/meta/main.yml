@@ -1,7 +1,7 @@
 ---
 galaxy_info:
-  role_name: raspberry
-  description: Setup Raspberry Pi configuration for Debian
+  role_name: raspi_config
+  description: Setup Raspberry Pi configuration for Raspberry Pi OS
   author: Peter Sukhenko
 
   license: MIT
@@ -16,6 +16,7 @@ galaxy_info:
   galaxy_tags:
     - raspberrypi
     - raspberry
+    - raspios
     - raspbian
     - rpi
     - pi
