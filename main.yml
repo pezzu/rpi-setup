@@ -39,7 +39,9 @@
     swap:
       enabled: false
 
-    bt_enabled: false
+    bluetooth:
+      enabled: false
+
     wifi_enabled: false
 
     cpu_overclock: true
