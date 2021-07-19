@@ -16,9 +16,6 @@
     - name: Set proper timezone
       import_tasks: tasks/set-timezone.yml
 
-    - name: Disable swap file
-      import_tasks: tasks/configure-swap.yml
-
     - name: Install Docker
       import_tasks: tasks/install-docker.yml
 
@@ -42,7 +39,13 @@
     bluetooth:
       enabled: false
 
-    wifi_enabled: false
+    wireless:
+      enabled: false
+
+    # wireless:
+    #   country: US
+    #   ssid: MY_NETWORK_SSID
+    #   psk: my_secret_password
 
     cpu_overclock: true
 

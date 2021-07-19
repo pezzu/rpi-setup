@@ -2,3 +2,6 @@
 - name: reboot host
   reboot:
     msg: "Reboot initiated by Ansible"
+
+- name: reconfigure wlan interface
+  command: wpa_cli -i wlan0 reconfigure

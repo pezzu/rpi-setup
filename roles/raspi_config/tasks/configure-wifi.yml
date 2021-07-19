@@ -1,10 +1,20 @@
 ---
-- name: Ensure WiFi is {{ wifi_enabled | ternary('enabled', 'disabled') }}.
-  when: wifi_enabled is defined
+- name: Setup Wireless LAN.
   become: true
-  ansible.builtin.lineinfile:
-    dest: "{{ boot_config_file }}"
-    regexp: "^dtoverlay=disable-wifi"
-    line: "dtoverlay=disable-wifi"
-    state: "{{ wifi_enabled | ternary('absent', 'present') }}"
-  notify: reboot host
+  block:
+    - name: Setup Wireless LAN - state.
+      when: wireless.enabled is defined
+      ansible.builtin.lineinfile:
+        dest: "{{ boot_config_file }}"
+        regexp: "^#?dtoverlay=disable-wifi"
+        line: "dtoverlay=disable-wifi"
+        state: "{{ wireless.enabled | ternary('absent', 'present') }}"
+      notify: reboot host
+
+    - name: Setup Wireless LAN - connection.
+      when: wireless.ssid is defined
+      ansible.builtin.template:
+        src: templates/wpa_supplicant.conf.j2
+        dest: /etc/wpa_supplicant/wpa_supplicant.conf
+        mode: 0644
+      notify: reconfigure wlan interface
