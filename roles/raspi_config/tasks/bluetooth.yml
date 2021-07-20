@@ -1,5 +1,5 @@
 ---
-- name: Setup Bluetooth.
+- name: Bluetooth - On/Off.
   when: bluetooth.enabled is defined
   become: true
   ansible.builtin.lineinfile:

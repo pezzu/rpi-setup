@@ -1,14 +1,14 @@
 ---
-- name: Ensure EEPROM is updated
+- name: Firmware update.
+  when: firmware_update is defined and firmware_update
   become: true
-  when: eeprom_update is defined and eeprom_update
   block:
-    - name: Ensure rpi-eeprom-update is installed
+    - name: Firmware - ensure rpi-eeprom-update is installed.
       ansible.builtin.apt:
         name: rpi-eeprom
         state: present
 
-    - name: Check if EEPROM update required
+    - name: Firmware - check if EEPROM update required.
       command: rpi-eeprom-update
       register: rpi_eeprom_update_result
       changed_when: false
@@ -17,7 +17,7 @@
         - rpi_eeprom_update_result.rc != 0
         - rpi_eeprom_update_result.rc != 1
 
-    - name: Schedule EEPROM update
+    - name: Firmware - schedule EEPROM update.
       when: rpi_eeprom_update_result.rc == 1
       command: rpi-eeprom-update -a
       notify: reboot host

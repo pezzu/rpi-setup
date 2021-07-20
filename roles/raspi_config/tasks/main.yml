@@ -1,18 +1,18 @@
 ---
-- name: Update EEPROM firmware.
-  import_tasks: tasks/update-eeprom.yml
+- name: Firmware update.
+  import_tasks: tasks/firmware.yml
 
-- name: Configure Bluetooth.
-  import_tasks: tasks/configure-bt.yml
+- name: Bluetooth setup.
+  import_tasks: tasks/bluetooth.yml
 
-- name: Configure WiFi.
-  import_tasks: tasks/configure-wifi.yml
+- name: WiFi setup.
+  import_tasks: tasks/wireless.yml
 
-- name: Set CPU frequency.
-  import_tasks: tasks/set-cpu-frequency.yml
+- name: Overclock setup.
+  import_tasks: tasks/overclock.yml
 
 - name: Mount tmpfs points.
   import_tasks: tasks/mount-tmpfs.yml
 
-- name: Configure Swap file.
-  import_tasks: tasks/configure-swap.yml
+- name: Swap file setup.
+  import_tasks: tasks/swap.yml

@@ -1,8 +1,8 @@
 ---
-- name: Setup Wireless LAN.
+- name: Wireless LAN setup.
   become: true
   block:
-    - name: Setup Wireless LAN - state.
+    - name: Wireless LAN - On/Off.
       when: wireless.enabled is defined
       ansible.builtin.lineinfile:
         dest: "{{ boot_config_file }}"
@@ -11,7 +11,7 @@
         state: "{{ wireless.enabled | ternary('absent', 'present') }}"
       notify: reboot host
 
-    - name: Setup Wireless LAN - connection.
+    - name: Wireless LAN - connection.
       when: wireless.ssid is defined
       ansible.builtin.template:
         src: templates/wpa_supplicant.conf.j2
