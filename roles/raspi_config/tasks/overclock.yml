@@ -1,6 +1,6 @@
 ---
 - name: Overclock setup.
-  when: cpu_overclock is defined
+  when: overclock.cpu is defined
   become: true
   block:
     - name: Overclock - voltage.
@@ -9,7 +9,7 @@
         regexp: "^over_voltage="
         line: "over_voltage=2"
         insertbefore: "arm_freq="
-        state: "{{ cpu_overclock | ternary('present', 'absent') }}"
+        state: "{{ overclock.cpu | ternary('present', 'absent') }}"
       notify: reboot host
 
     - name: Overclock - CPU frequency.
@@ -18,5 +18,5 @@
         regexp: "^arm_freq="
         line: "arm_freq=1750"
         insertafter: "^over_voltage="
-        state: "{{ cpu_overclock | ternary('present', 'absent') }}"
+        state: "{{ overclock.cpu | ternary('present', 'absent') }}"
       notify: reboot host
