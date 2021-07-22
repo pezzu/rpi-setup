@@ -23,10 +23,10 @@
     wireless:
       enabled: false
 
-    wireless:
-      country: US
-      ssid: MY_NETWORK_SSID
-      psk: my_secret_password
+    # wireless:
+    #   country: US
+    #   ssid: MY_NETWORK_SSID
+    #   psk: my_secret_password
 
     overclock:
       cpu: true
