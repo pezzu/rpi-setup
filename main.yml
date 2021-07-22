@@ -2,29 +2,11 @@
 - hosts: pi
   become: true
 
-  pre_tasks:
-    - name: Update apt cache
-      ansible.builtin.apt: update_cache=yes cache_valid_time=3600
-
   roles:
     - raspi_config
 
-  tasks:
-    - name: Upgrade distribution
-      import_tasks: tasks/upgrade-system.yml
-
-    - name: Set proper timezone
-      import_tasks: tasks/set-timezone.yml
-
-    - name: Install Docker
-      import_tasks: tasks/install-docker.yml
-
-  post_tasks:
-    - name: Clean unused dependencies
-      ansible.builtin.apt: autoremove=yes
-
   vars:
-    eeprom_update: true
+    firmware_update: true
 
     mount_tmpfs:
       - { path: "/tmp", size: "512m", options: "nodev,nosuid" }
@@ -41,9 +23,23 @@
     wireless:
       enabled: false
 
-    # wireless:
-    #   country: US
-    #   ssid: MY_NETWORK_SSID
-    #   psk: my_secret_password
+    wireless:
+      country: US
+      ssid: MY_NETWORK_SSID
+      psk: my_secret_password
 
-    cpu_overclock: true
+    overclock:
+      cpu: true
+      gpu: false
+
+    ssh:
+      enabled: true
+      options:
+        - "AllowUsers {{ ansible_ssh_user }}"
+        - "PasswordAuthentication no"
+        - "PermitRootLogin no"
+        - "StrictModes yes"
+        - "X11Forwarding no"
+        - "ChallengeResponseAuthentication no"
+        - "UsePAM no"
+        - "PermitEmptyPasswords no"
