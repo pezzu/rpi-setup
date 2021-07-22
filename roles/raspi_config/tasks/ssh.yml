@@ -1,0 +1,20 @@
+---
+- name: SSH - enabled/disabled.
+  when: ssh.enabled is defined
+  become: true
+  ansible.builtin.systemd:
+    name: ssh
+    state: "{{ ssh.enabled } | ternary('started', 'stopped') }}"
+    enabled: "{{ ssh.enabled }}"
+
+- name: SSH - options.
+  when: ssh.options is defined
+  become: true
+  ansible.builtin.lineinfile:
+    path: "{{ sshd_config_file }}"
+    regexp: "^{{ item | regex_search('^([^ ]+)') }}"
+    line: "{{ item }}"
+    state: present
+    validate: 'sshd -T -f %s'
+  loop: "{{ ssh.options }}"
+  notify: restart sshd

@@ -5,3 +5,8 @@
 
 - name: reconfigure wlan interface
   command: wpa_cli -i wlan0 reconfigure
+
+- name: restart sshd
+  service:
+    name: ssh
+    state: restarted

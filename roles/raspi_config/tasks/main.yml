@@ -16,3 +16,6 @@
 
 - name: Swap file setup.
   import_tasks: tasks/swap.yml
+
+- name: SSH setup.
+  import_tasks: tasks/ssh.yml
