@@ -4,8 +4,18 @@
   become: true
   ansible.builtin.systemd:
     name: ssh
-    state: "{{ ssh.enabled } | ternary('started', 'stopped') }}"
+    state: "{{ ssh.enabled | ternary('started', 'stopped') }}"
     enabled: "{{ ssh.enabled }}"
+
+- name: SSH - adding pub keys.
+  when: ssh.pub_key_file is defined
+  become: true
+  ansible.posix.authorized_key:
+    user: "{{ ansible_ssh_user }}"
+    key: "{{ lookup('file', item) }}"
+    state: present
+    manage_dir: true
+  with_list: "{{ ssh.pub_key_file }}"
 
 - name: SSH - options.
   when: ssh.options is defined

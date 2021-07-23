@@ -34,6 +34,8 @@
 
     ssh:
       enabled: true
+      pub_key_file:
+        - ~/.ssh/id_rsa.pub
       options:
         - "AllowUsers {{ ansible_ssh_user }}"
         - "PasswordAuthentication no"
