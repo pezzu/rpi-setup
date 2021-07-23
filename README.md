@@ -7,9 +7,9 @@
 
 ## List of tasks
 
-- [ ] Configure hostname
+- [x] Configure hostname
 - [ ] Configure user / password
-- [ ] Setup SSH key
+- [x] Setup SSH key
 - [x] Distribution upgrade
 - [x] EEPROM firmware update
 - [ ] Setup unattended upgrades
