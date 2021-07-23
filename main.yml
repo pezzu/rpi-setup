@@ -8,6 +8,8 @@
   vars:
     firmware_update: true
 
+    hostname: rpi01
+
     mount_tmpfs:
       - { path: "/tmp", size: "512m", options: "nodev,nosuid" }
       - { path: "/var/log", size: "512m", options: "nodev,noexec,nosuid" }

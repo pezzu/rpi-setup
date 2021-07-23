@@ -1,0 +1,8 @@
+---
+- name: Hostname setup.
+  when: hostname is defined
+  become: true
+  ansible.builtin.hostname:
+    name: "{{ hostname }}"
+
+# TODO: update /etc/hosts
