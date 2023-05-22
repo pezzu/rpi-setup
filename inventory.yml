@@ -4,4 +4,4 @@ pi:
     ansible_user: pi
     ansible_password: raspberry
   hosts:
-    paspberrypi.local:
+    raspberrypi.local:
