@@ -2,21 +2,21 @@
 - name: Install Docker.
   become: true
   block:
-    - name: Check if Docker is already present.
+    - name: Check if Docker is already present
       command: which docker
       failed_when: false
       changed_when: false
       check_mode: false
       register: docker_command_result
 
-    - name: Download Docker install convenience script.
+    - name: Download Docker install convenience script
       ansible.builtin.get_url:
         url: https://get.docker.com/
         dest: /tmp/get-docker.sh
         mode: 0775
       when: docker_command_result.rc == 1
 
-    - name: Run Docker install convenience script.
+    - name: Run Docker install convenience script
       command: /tmp/get-docker.sh
       environment:
         CHANNEL: stable
@@ -28,7 +28,7 @@
         state: started
         enabled: true
 
-    - name: Ensure compose dependencies are installed.
+    - name: Ensure compose dependencies are installed
       ansible.builtin.apt:
         name:
           - libffi-dev
@@ -37,18 +37,18 @@
           - python3-pip
         state: present
 
-    - name: Install Docker Compose using Pip.
+    - name: Install Docker Compose using Pip
       ansible.builtin.pip:
         name: docker-compose
         state: present
         executable: pip3
 
-    - name: Ensure {{ ansible_user }} user is added to the docker group.
+    - name: Ensure {{ ansible_user }} user is added to the docker group
       ansible.builtin.user:
         name: "{{ ansible_user }}"
         groups: docker
         append: true
 
     # reset_connection doesn't support conditionals.
-    - name: Reset connection so docker group is picked up.
-    meta: reset_connection
+    - name: Reset connection so docker group is picked up
+      meta: reset_connection
