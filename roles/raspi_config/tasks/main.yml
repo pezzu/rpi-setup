@@ -1,24 +1,27 @@
 ---
-- name: Firmware update.
+- name: OS upgrade
+  import_tasks: tasks/system.yml
+
+- name: Firmware update
   import_tasks: tasks/firmware.yml
 
-- name: Hostname setup.
+- name: Hostname setup
   import_tasks: tasks/hostname.yml
 
-- name: SSH setup.
+- name: SSH setup
   import_tasks: tasks/ssh.yml
 
-- name: Bluetooth setup.
+- name: Bluetooth setup
   import_tasks: tasks/bluetooth.yml
 
-- name: WiFi setup.
+- name: WiFi setup
   import_tasks: tasks/wireless.yml
 
-- name: Mount tmpfs points.
-  import_tasks: tasks/mount-tmpfs.yml
+- name: Mount tmpfs points
+  import_tasks: tasks/tmpfs.yml
 
-- name: Swap file setup.
+- name: Swap file setup
   import_tasks: tasks/swap.yml
 
-- name: Overclock setup.
+- name: Overclock setup
   import_tasks: tasks/overclock.yml

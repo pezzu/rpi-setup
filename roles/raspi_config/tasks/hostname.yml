@@ -1,5 +1,5 @@
 ---
-- name: Hostname setup.
+- name: Hostname setup
   when: hostname is defined
   block:
     - name: Hostname - get current hostname.

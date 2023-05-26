@@ -1,6 +1,5 @@
 ---
-- name: Firmware update.
-  when: firmware_update is defined and firmware_update
+- name: Firmware update
   become: true
   block:
     - name: Firmware - ensure rpi-eeprom-update is installed.

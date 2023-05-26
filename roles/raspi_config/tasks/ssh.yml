@@ -1,11 +1,11 @@
 ---
-- name: SSH - enabled/disabled.
+- name: SSH - enabled/disabled
   when: ssh.enabled is defined
   become: true
   ansible.builtin.systemd:
     name: ssh
-    state: "{{ ssh.enabled | ternary('started', 'stopped') }}"
-    enabled: "{{ ssh.enabled }}"
+    state: "started"
+    enabled: true
 
 - name: SSH - adding pub keys.
   when: ssh.pub_key_file is defined

@@ -4,4 +4,23 @@ pi:
     ansible_user: pi
     ansible_password: raspberry
   hosts:
-    paspberrypi.local:
+    raspberry.local:
+      # hostname: minecraft
+      timezone: America/New_York
+      overclock: true
+      bluetooth: false
+      wireless:
+        enabled: false
+      # wireless:
+      #   conuntry: US
+      #   ssid: MY_NETWORK_SSID
+      #   psk: my_secret_password
+      swap:
+        enabled: false
+        # size:
+      ssh:
+        pub_key_file: ~/.ssh/id_rsa.pub
+        # options:
+        #   - "AllowUsers {{ ansible_ssh_user }}"
+        #   - "PasswordAuthentication no"
+

@@ -2,3 +2,21 @@
 boot_config_file: /boot/config.txt
 dphys_swapfile: /etc/dphys-swapfile
 sshd_config_file: /etc/ssh/sshd_config
+
+mount_tmpfs:
+  - { path: "/tmp", size: "512m", options: "nodev,nosuid" }
+  - { path: "/var/log", size: "512m", options: "nodev,noexec,nosuid" }
+
+ssh:
+  options:
+    - "AllowUsers {{ ansible_ssh_user }}"
+    - "PasswordAuthentication no"
+    - "PermitRootLogin no"
+    - "StrictModes yes"
+    - "X11Forwarding no"
+    - "ChallengeResponseAuthentication no"
+    - "UsePAM no"
+    - "PermitEmptyPasswords no"
+
+wireless:
+  country: US

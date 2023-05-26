@@ -1,5 +1,5 @@
 ---
-- name: Ensure mount points are configured.
+- name: Ensure mount points are configured
   when: mount_tmpfs is defined and mount_tmpfs|length > 0
   become: true
   ansible.posix.mount:

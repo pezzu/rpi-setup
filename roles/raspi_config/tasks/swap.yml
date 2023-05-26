@@ -1,5 +1,5 @@
 ---
-- name: Swap file setup.
+- name: Swap file setup
   become: true
   block:
     - name: Swap file - service is started/stopped.
@@ -9,7 +9,7 @@
         state: "{{ swap.enabled | ternary('started', 'stopped') }}"
         enabled: "{{ swap.enabled }}"
 
-    - name: Swap file - setup swap file size.
+    - name: Swap file - setup swap file size
       when: swap.size is defined
       block:
         - name: Swap file - check swap size.
@@ -18,7 +18,7 @@
           failed_when: false
           register: get_swap_size_command_result
 
-        - name: Swap file - set proper swap file size.
+        - name: Swap file - set proper swap file size
           when: get_swap_size_command_result.rc == 1
           block:
             - name: Swap file - turn swap off.
@@ -31,8 +31,8 @@
                 line: "CONF_SWAPSIZE={{ swap.size }}"
                 state: present
 
-            - name: Swap file - apply new swap size.
+            - name: Swap file - apply new swap size
               command: "dphys-swapfile setup"
 
-            - name: Swap file - turn swap on.
+            - name: Swap file - turn swap on
               command: "dphys-swapfile swapon"
