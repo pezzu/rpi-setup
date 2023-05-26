@@ -23,4 +23,3 @@ pi:
         # options:
         #   - "AllowUsers {{ ansible_ssh_user }}"
         #   - "PasswordAuthentication no"
-
