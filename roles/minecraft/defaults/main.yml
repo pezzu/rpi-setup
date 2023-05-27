@@ -1,0 +1,3 @@
+---
+download_page_url: "https://www.minecraft.net/en-us/download/server/"
+binary_url_regex: 'https://.*.mojang.com/v1/objects/.*/server.jar'

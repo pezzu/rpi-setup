@@ -6,7 +6,7 @@
       ansible.builtin.user:
         name: minecraft
         state: present
-        create_home: yes
+        create_home: true
         home: /home/minecraft
 
     - name: Install Java runtime
@@ -21,14 +21,14 @@
 
     - name: Get Minecraft server download URL
       uri:
-        url: "https://www.minecraft.net/en-us/download/server/"
-        return_content: yes
+        url: download_page_url
+        return_content: true
       register: download_page
       when: not server_stat.stat.exists
 
     - name: Extract download URL
       set_fact:
-        download_url: "{{ download_page.content | regex_search('https://.*.mojang.com/v1/objects/.*/server.jar') }}"
+        download_url: "{{ download_page.content | regex_search(binary_url_regex) }}"
       when: not server_stat.stat.exists
 
     - name: Download Minecraft server binary
@@ -37,6 +37,6 @@
         dest: "/home/minecraft/server.jar"
       when: not server_stat.stat.exists
 
-    # - name: Configure server settings
+#     - name: Configure server settings
 
-    # - name: Configure auto-start
+#     - name: Configure auto-start
