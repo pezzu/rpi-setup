@@ -23,6 +23,7 @@
           block:
             - name: Swap file - turn swap off.
               command: "dphys-swapfile swapoff"
+              changed_when: false
 
             - name: Swap file - set swap size.
               ansible.builtin.lineinfile:
@@ -33,6 +34,9 @@
 
             - name: Swap file - apply new swap size
               command: "dphys-swapfile setup"
+              register: swapfile_setup_out
+              changed_when: "'keeping it' not in swapfile_setup_out.stdout"
 
             - name: Swap file - turn swap on
               command: "dphys-swapfile swapon"
+              changed_when: false
