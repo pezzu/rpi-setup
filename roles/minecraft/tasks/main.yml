@@ -1,0 +1,41 @@
+---
+- name: Install minecraft server
+  become: true
+  block:
+    - name: Create minecraft user
+      ansible.builtin.user:
+        name: minecraft
+        state: present
+        create_home: yes
+        home: /home/minecraft
+
+    - name: Install Java runtime
+      ansible.builtin.apt: default-jre
+        state: present
+
+    - name: Check if Minecraft server binary already installed
+      ansible.builtin.stat:
+        path: "/home/minecraft/server.jar"
+      register: server_stat
+
+    - name: Get Minecraft server download URL
+      uri:
+        url: "https://www.minecraft.net/en-us/download/server/"
+        return_content: yes
+      register: download_page
+      when: not server_stat.stat.exists
+
+    - name: Extract download URL
+      set_fact:
+        download_url: "{{ download_page.content | regex_search('https://.*.mojang.com/v1/objects/.*/server.jar') }}"
+      when: not server_stat.stat.exists
+
+    - name: Download Minecraft server binary
+      get_url:
+        url: "{{ download_url }}"
+        dest: "/home/minecraft/server.jar"
+      when: not server_stat.stat.exists
+
+    # - name: Configure server settings
+
+    # - name: Configure auto-start
