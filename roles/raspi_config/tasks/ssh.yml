@@ -11,7 +11,7 @@
   when: ssh.pub_key_file is defined
   become: true
   ansible.posix.authorized_key:
-    user: "{{ ssh.ssh_user }}"
+    user: "{{ ssh.user | default(ansible_user) }}"
     key: "{{ lookup('file', item) }}"
     state: present
     manage_dir: true
