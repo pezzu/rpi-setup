@@ -7,7 +7,7 @@
     state: "started"
     enabled: true
 
-- name: SSH - adding pub keys.
+- name: SSH - adding pub keys
   when: ssh.pub_key_file is defined
   become: true
   ansible.posix.authorized_key:
@@ -17,7 +17,7 @@
     manage_dir: true
   with_list: "{{ ssh.pub_key_file }}"
 
-- name: SSH - options.
+- name: SSH - options
   when: ssh.options is defined
   become: true
   ansible.builtin.lineinfile:
