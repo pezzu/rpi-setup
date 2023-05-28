@@ -5,10 +5,10 @@
     - name: Hostname - get current hostname.
       ansible.builtin.command: 'raspi-config nonint get_hostname'
       changed_when: false
-      register: get_hostname
+      register: raspi_config_get_hostname
 
     - name: Hostname - set new hostname.
-      when: get_hostname.stdout != hostname
+      when: raspi_config_get_hostname.stdout != hostname
       become: true
       ansible.builtin.command: 'raspi-config nonint do_hostname {{ hostname }}'
       changed_when: true

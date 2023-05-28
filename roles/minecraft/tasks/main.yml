@@ -17,19 +17,19 @@
     - name: Check if Minecraft server binary already installed
       ansible.builtin.stat:
         path: "/home/minecraft/server.jar"
-      register: server_stat
+      register: minecraft_server_stat
 
     - name: Get Minecraft server download URL
       ansible.builtin.uri:
         url: download_page_url
         return_content: true
-      register: download_page
-      when: not server_stat.stat.exists
+      register: minecraft_download_page
+      when: not minecraft_server_stat.stat.exists
 
     - name: Extract download URL
       ansible.builtin.set_fact:
-        download_url: "{{ download_page.content | regex_search(binary_url_regex) }}"
-      when: not server_stat.stat.exists
+        download_url: "{{ minecraft_download_page.content | regex_search(binary_url_regex) }}"
+      when: not minecraft_server_stat.stat.exists
 
     - name: Download Minecraft server binary
       ansible.builtin.get_url:
@@ -37,7 +37,7 @@
         dest: "/home/minecraft/server.jar"
         mode: 644
         owner: minecraft
-      when: not server_stat.stat.exists
+      when: not minecraft_server_stat.stat.exists
 
 #     - name: Configure server settings
 

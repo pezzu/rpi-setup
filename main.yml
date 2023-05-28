@@ -1,6 +1,6 @@
 ---
-- hosts: pi
-  become: true
+- name: Basic configuration of Raspberry PI
+  hosts: pi
 
   roles:
     - raspi_config
