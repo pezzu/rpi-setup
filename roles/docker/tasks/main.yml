@@ -20,6 +20,7 @@
       ansible.builtin.command: /tmp/get-docker.sh
       environment:
         CHANNEL: stable
+      changed_when: true
       when: docker_command_result.rc == 1
 
     - name: Ensure Docker is started.

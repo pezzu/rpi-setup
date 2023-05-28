@@ -11,4 +11,5 @@
       when: get_hostname.stdout != hostname
       become: true
       ansible.builtin.command: 'raspi-config nonint do_hostname {{ hostname }}'
+      changed_when: true
       notify: reboot host

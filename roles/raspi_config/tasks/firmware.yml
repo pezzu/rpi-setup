@@ -19,4 +19,5 @@
     - name: Firmware - schedule EEPROM update.
       when: rpi_eeprom_update_result.rc == 1
       ansible.builtin.command: rpi-eeprom-update -a
+      changed_when: true
       notify: reboot host

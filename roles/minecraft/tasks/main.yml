@@ -35,6 +35,8 @@
       ansible.builtin.get_url:
         url: "{{ download_url }}"
         dest: "/home/minecraft/server.jar"
+        mode: 644
+        owner: minecraft
       when: not server_stat.stat.exists
 
 #     - name: Configure server settings

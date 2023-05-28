@@ -7,6 +7,6 @@
   ansible.builtin.command: wpa_cli -i wlan0 reconfigure
 
 - name: Restart sshd
-  service:
+  ansible.builtin.service:
     name: ssh
     state: restarted
