@@ -3,12 +3,12 @@
   when: hostname is defined
   block:
     - name: Hostname - get current hostname.
-      command: 'raspi-config nonint get_hostname'
+      ansible.builtin.command: 'raspi-config nonint get_hostname'
       changed_when: false
       register: get_hostname
 
     - name: Hostname - set new hostname.
       when: get_hostname.stdout != hostname
       become: true
-      command: 'raspi-config nonint do_hostname {{ hostname }}'
+      ansible.builtin.command: 'raspi-config nonint do_hostname {{ hostname }}'
       notify: reboot host

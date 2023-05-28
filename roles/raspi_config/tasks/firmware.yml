@@ -8,7 +8,7 @@
         state: present
 
     - name: Firmware - check if EEPROM update required.
-      command: rpi-eeprom-update
+      ansible.builtin.command: rpi-eeprom-update
       register: rpi_eeprom_update_result
       changed_when: false
       check_mode: false
@@ -18,5 +18,5 @@
 
     - name: Firmware - schedule EEPROM update.
       when: rpi_eeprom_update_result.rc == 1
-      command: rpi-eeprom-update -a
+      ansible.builtin.command: rpi-eeprom-update -a
       notify: reboot host

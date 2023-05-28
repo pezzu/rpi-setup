@@ -13,7 +13,7 @@
       when: swap.size is defined
       block:
         - name: Swap file - check swap size.
-          command: "grep ^CONF_SWAPSIZE={{ swap.size }}$ {{ dphys_swapfile }}"
+          ansible.builtin.command: "grep ^CONF_SWAPSIZE={{ swap.size }}$ {{ dphys_swapfile }}"
           changed_when: false
           failed_when: false
           register: get_swap_size_command_result
@@ -22,7 +22,7 @@
           when: get_swap_size_command_result.rc == 1
           block:
             - name: Swap file - turn swap off.
-              command: "dphys-swapfile swapoff"
+              ansible.builtin.command: "dphys-swapfile swapoff"
               changed_when: false
 
             - name: Swap file - set swap size.
@@ -33,10 +33,10 @@
                 state: present
 
             - name: Swap file - apply new swap size
-              command: "dphys-swapfile setup"
+              ansible.builtin.command: "dphys-swapfile setup"
               register: swapfile_setup_out
               changed_when: "'keeping it' not in swapfile_setup_out.stdout"
 
             - name: Swap file - turn swap on
-              command: "dphys-swapfile swapon"
+              ansible.builtin.command: "dphys-swapfile swapon"
               changed_when: false

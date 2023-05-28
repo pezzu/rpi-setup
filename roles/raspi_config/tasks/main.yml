@@ -1,27 +1,27 @@
 ---
 - name: OS upgrade
-  import_tasks: tasks/system.yml
+  ansible.builtin.import_tasks: tasks/system.yml
 
 - name: Firmware update
-  import_tasks: tasks/firmware.yml
+  ansible.builtin.import_tasks: tasks/firmware.yml
 
 - name: Hostname setup
-  import_tasks: tasks/hostname.yml
+  ansible.builtin.import_tasks: tasks/hostname.yml
 
 - name: SSH setup
-  import_tasks: tasks/ssh.yml
+  ansible.builtin.import_tasks: tasks/ssh.yml
 
 - name: Bluetooth setup
-  import_tasks: tasks/bluetooth.yml
+  ansible.builtin.import_tasks: tasks/bluetooth.yml
 
 - name: WiFi setup
-  import_tasks: tasks/wireless.yml
+  ansible.builtin.import_tasks: tasks/wireless.yml
 
 - name: Mount tmpfs points
-  import_tasks: tasks/tmpfs.yml
+  ansible.builtin.import_tasks: tasks/tmpfs.yml
 
 - name: Swap file setup
-  import_tasks: tasks/swap.yml
+  ansible.builtin.import_tasks: tasks/swap.yml
 
 - name: Overclock setup
-  import_tasks: tasks/overclock.yml
+  ansible.builtin.import_tasks: tasks/overclock.yml
