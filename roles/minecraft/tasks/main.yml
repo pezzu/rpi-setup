@@ -28,12 +28,12 @@
 
     - name: Extract download URL
       ansible.builtin.set_fact:
-        download_url: "{{ minecraft_download_page.content | regex_search(binary_url_regex) }}"
+        minecraft_download_url: "{{ minecraft_download_page.content | regex_search(binary_url_regex) }}"
       when: not minecraft_server_stat.stat.exists
 
     - name: Download Minecraft server binary
       ansible.builtin.get_url:
-        url: "{{ download_url }}"
+        url: "{{ minecraft_download_url }}"
         dest: "/home/minecraft/server.jar"
         mode: 644
         owner: minecraft
