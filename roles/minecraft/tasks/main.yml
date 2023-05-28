@@ -20,19 +20,19 @@
       register: server_stat
 
     - name: Get Minecraft server download URL
-      uri:
+      ansible.builtin.uri:
         url: download_page_url
         return_content: true
       register: download_page
       when: not server_stat.stat.exists
 
     - name: Extract download URL
-      set_fact:
+      ansible.builtin.set_fact:
         download_url: "{{ download_page.content | regex_search(binary_url_regex) }}"
       when: not server_stat.stat.exists
 
     - name: Download Minecraft server binary
-      get_url:
+      ansible.builtin.get_url:
         url: "{{ download_url }}"
         dest: "/home/minecraft/server.jar"
       when: not server_stat.stat.exists

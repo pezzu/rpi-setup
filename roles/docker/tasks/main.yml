@@ -3,7 +3,7 @@
   become: true
   block:
     - name: Check if Docker is already present
-      command: which docker
+      ansible.builtin.command: which docker
       failed_when: false
       changed_when: false
       check_mode: false
@@ -17,7 +17,7 @@
       when: docker_command_result.rc == 1
 
     - name: Run Docker install convenience script
-      command: /tmp/get-docker.sh
+      ansible.builtin.command: /tmp/get-docker.sh
       environment:
         CHANNEL: stable
       when: docker_command_result.rc == 1
@@ -51,4 +51,4 @@
 
     # reset_connection doesn't support conditionals.
     - name: Reset connection so docker group is picked up
-      meta: reset_connection
+      ansible.builtin.meta: reset_connection

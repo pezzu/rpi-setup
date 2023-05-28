@@ -1,12 +1,12 @@
 ---
-- name: reboot host
-  reboot:
+- name: Reboot host
+  ansible.builtin.reboot:
     msg: "Reboot initiated by Ansible"
 
-- name: reconfigure wlan interface
+- name: Reconfigure wlan interface
   ansible.builtin.command: wpa_cli -i wlan0 reconfigure
 
-- name: restart sshd
+- name: Restart sshd
   service:
     name: ssh
     state: restarted
