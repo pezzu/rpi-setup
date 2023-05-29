@@ -35,10 +35,15 @@
       ansible.builtin.get_url:
         url: "{{ minecraft_download_url }}"
         dest: "/home/minecraft/server.jar"
-        mode: 644
+        mode: '0644'
         owner: minecraft
       when: not minecraft_server_stat.stat.exists
 
-#     - name: Configure server settings
+    - name: Copying EULA
+      ansible.builtin.copy:
+        src: templates/eula.txt
+        dest: /home/minecraft/eula.txt
+        owner: minecraft
+        mode: '0644'
 
 #     - name: Configure auto-start
